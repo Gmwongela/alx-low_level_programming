@@ -15,5 +15,5 @@ int main(void)
 		printf("%d", n);
 	}
 	printf("\n");
-	return (0)i;
+	return (0);
 }
