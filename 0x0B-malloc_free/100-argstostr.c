@@ -3,48 +3,40 @@
 #include <stdlib.h>
 
 /**
- * *argstostr - function that concatenates all the arguments of your program
- * @ac: int type
- * @av: pointer to array
- * Return: arguments as strings
+ * argstostr - function that concatenates all the arguments of your program
+ * @ac: arguments number
+ * @av: argument variables
+ * Return: Always 0.
  */
-
 char *argstostr(int ac, char **av)
 {
-	int size, count, count1, count2 = 0;
-	char *ptr;
+	char *s;
+	int a, b, c, d;
 
-	if (ac == 0 || av == NULL)
-	{
+	if (ac == 0)
 		return (NULL);
-	}
-
-	for (count = 0; count < ac; count++)
-	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
-		{
-			size += 1;
-	}
-		size += 1;
-	}
-	size += 1;
-
-	ptr = malloc(sizeof(char) * size);
-	if (ptr == NULL)
-	{
-		free(ptr);
+	if (av == 0)
 		return (NULL);
-	}
-	for (count = 0; count < ac; count++)
+	a = 0;
+	for (b = 0; b < ac; b++)
 	{
-		for (count1 = 0; av[count][count1] != '\0'; count1++)
+		for (c = 0; av[b][c] != '\0'; c++)
+			a++;
+		a++;
+	}
+	a++;
+	s = malloc(a * sizeof(char));
+	if (s == 0)
+		return (NULL);
+	d = 0;
+	for (b = 0; b < ac; b++)
+	{
+		for (c = 0; av[b][c] != '\0'; c++)
 		{
-			ptr[count2] = av[count][count1];
-			count2++;
+			s[d++] = av[b][c];
 		}
-		ptr[count2] = '\n';
-		count2++;
+		s[d++] = '\n';
 	}
-	ptr[count2] = '\0';
-	return (ptr);
+	s[d] = '\0';
+	return (s);
 }
